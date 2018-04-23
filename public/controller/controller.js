@@ -36,9 +36,9 @@ function($scope,$http,$window,$filter,$timeout,$q,ControllerService){
     //handling pay button
     $scope.payButtonDIsplay = "false";
     //party details
-$scope.receiptOrder=window.sessionStorage.getItem("oreceipt");
+ $scope.receiptOrder=window.sessionStorage.getItem("oreceipt");
  // alert("receipt status "+$scope.receiptOrder);
-$scope.receiptOrder2=window.sessionStorage.getItem("oreceipt2");
+ $scope.receiptOrder2=window.sessionStorage.getItem("oreceipt2");
  $scope.chargeOrd = window.sessionStorage.getItem("ordChg");
  $scope.chargeAmt = window.sessionStorage.getItem("amtchg");
 // alert($scope.receiptOrder2+"ggg");
@@ -93,6 +93,7 @@ $scope.detailsOrder=function(orderNum){
       $http.get('/receiptOrderNtWt/'+orderNum).success(function(response){
             console.log(response)
             //console.log(response[0].Balance)
+            //alert(response[0].remainingNtWt)
             $scope.remainingBalance=response[0].remainingNtWt;
 
             //alert("1ee"+$scope.remainingBalance)
@@ -100,12 +101,13 @@ $scope.detailsOrder=function(orderNum){
           
       $http.get('/ordersNoFromReceipt/'+orderNum).success(function(response){ 
               console.log(response)
-             // alert(" response "+response.length)
+             //alert(" response "+response.length)
              //$scope.orderFinal=parseFloat(response[0].remainingPaid)
               //alert("2ww"+$scope.orderFinal)
               // 27/3 vijay added this condition because  response[0].remainingPaid undefined
             if (response.length!= 0) {
                $scope.orderFinal=parseFloat(response[0].remainingPaid)
+            //alert($scope.orderFinal)
             
             };
       })
@@ -177,7 +179,7 @@ delete(response[0].purity)
 
                    if(parseFloat($scope.calres) <= parseFloat(response[i].chgunt)){
  //alert("1")alert
-                      alert( parseFloat($scope.calres))
+                      //alert( parseFloat($scope.calres))
                         $scope.userit[i].ordAdj =parseFloat($scope.calres)
 
                         var subt=0;
@@ -437,8 +439,16 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
         var $index=0;
          $scope.showOrderNO=response[0].orderNO;
          console.log(response);
+<<<<<<< HEAD
+         console.log(response[0].itemName);       
+=======
          console.log(response[0].itemName);
           
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
+>>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
          delete(response[0].taxSelection);
          delete(response[0].taxval);
          // $scope.userit[$index].taxval=0;
@@ -454,7 +464,15 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
           // $scope.taxSelectionCall(0,$scope.taxSelection);
          //$scope.userit[0].orderStatus=makeCompleted;
          //alert($scope.userit[0].orderStatus+"ll")
+<<<<<<< HEAD
          console.log($scope.userit)
+=======
+<<<<<<< HEAD
+         console.log($scope.userit)
+=======
+console.log($scope.userit)
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
+>>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
         })
 
  }
@@ -480,7 +498,7 @@ var PartyId=window.sessionStorage.setItem("idVocherPartyId",null)
              
                })
     
-       var updateVocherPartyId =$scope.showOrderNO+","+ $scope.userit[0]._id +","+$scope.userit[0].partyNames+","+$scope.userit[0].desc+","
+     var updateVocherPartyId =$scope.showOrderNO+","+ $scope.userit[0]._id +","+$scope.userit[0].partyNames+","+$scope.userit[0].desc+","
     +$scope.userit[0].size+","+$scope.userit[0].gpcs+","+$scope.userit[0].gwt+","+$scope.userit[0].itemName+","+$scope.userit[0].ntwt+","
     +$scope.userit[0].purity+","+$scope.userit[0].stwt+","+$scope.userit[0].wastage+","+$scope.userit[0].stval+","
     +$scope.userit[0].uom +","+$scope.userit[0].pctcal+","+$scope.userit[0].chgunt +","
@@ -1631,7 +1649,7 @@ $scope.getDetails=function(rvalue,voucherNo){
     $scope.staffclicked=1;
   }
   if($scope.transaction == 'Receipt Voucher'|| $scope.receiptOrder2 == 1) {
-       alert("hi");
+       // alert("hi");
     window.sessionStorage.setItem('receiptfinal',$scope.receiptOrder2);
     $scope.voucherdetails=1;
     $scope.finalCal();
@@ -2302,7 +2320,7 @@ $scope.purityCal1=function(val,purity,itemname){
 
 $scope.purityCal=function(val,purity){
        
-
+//alert($scope.userit[val].wastage)
        for(i=0;i<$scope.irate.length;i++)
        {
           if (purity == $scope.irate[i].ValueNotation)
@@ -2349,12 +2367,31 @@ $scope.purityCal=function(val,purity){
     {
       $scope.userit[val].ntwt=$scope.userit[val].ntwt-parseFloat($scope.userit[val].stwt);
     }
+<<<<<<< HEAD
     $scope.userit[val].wastage = 0;
     $scope.userit[val].chgunt=$scope.userit[val].ntwt+ $scope.userit[val].wastage- $scope.userit[val].ordAdj;
     //alert("here is index"+$scope.userit[$index].chgunt)
     //
     //$scope.newwas($index,pctcal);
  
+=======
+    //alert("mm")
+ if($scope.userit[val].wastage==undefined)
+    {
+$scope.userit[val].wastage=0;
+    }
+    if($scope.userit[val].ordAdj!=undefined && $scope.userit[val].wastage!=undefined)
+    {
+    //$scope.userit[val].wastage=0
+    $scope.userit[val].chgunt=$scope.userit[val].ntwt+$scope.userit[val].wastage-$scope.userit[val].ordAdj;
+    }
+
+ if($scope.userit[val].ordAdj==undefined)
+  {
+    $scope.userit[val].chgunt=$scope.userit[val].ntwt
+  }
+  //23-04-2018(for order flow)
+>>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
     $scope.userit[val].taxval=parseFloat($scope.userit[val].chgunt*$scope.userit[val].rate).toFixed($scope.rupeesDecimalPoints)
    
     console.log( $scope.userit[val].taxval);
@@ -2621,7 +2658,15 @@ if($scope.transaction == 'Receipt Voucher'){
         $scope.userit[$index].gwt  = (parseFloat($scope.userit[$index].gwt)).toFixed(fixdec);
         $scope.userit[$index].gwt  = parseFloat($scope.userit[$index].gwt)
         $scope.userit[$index].ntwt = $scope.userit[$index].gwt;
+<<<<<<< HEAD
       if($scope.chargeOrd == 1 || $scope.chargeAmt == 1 || $scope.receiptOrder ==1){
+=======
+<<<<<<< HEAD
+      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1||$scope.receiptOrder == 1){
+=======
+      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1 || $scope.receiptOrder == 1 ){
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
+>>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
         $scope.userit[$index].chgunt = $scope.userit[$index].ntwt;
       }
   // alert($scope.userit[$index].labamt+" "+$scope.userit[$index].taxval);
@@ -3093,15 +3138,29 @@ else{
                      $scope.receiptVoucherTax="receiptGST";
                      $scope.taxSelectionCall($index,$scope.receiptVoucherTax);
                  }else{
-                //     $scope.receiptVoucherTax2 = "receiptIGST";
+                     $scope.receiptVoucherTax2 = "receiptIGST";
                     $scope.taxSelectionCall($index,$scope.receiptVoucherTax2);
                  }
 
                 // $scope.saleinv[0].taxableval=$scope.userit[$index].taxval;
         }else if(labval2 == 'PerUnit'){
+<<<<<<< HEAD
             if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt==undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
               // alert("hi")
                 $scope.userit[$index].labval = 0;
+=======
+<<<<<<< HEAD
+          //alert(typeof($scope.userit[$index].labval));
+            if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt== undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
+              // alert("hi")
+              // $scope.userit[$index].labamt=0;
+                $scope.userit[$index].labval=0;
+=======
+            if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt==undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
+              // alert("hi")
+                $scope.userit[$index].labval = 0;
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
+>>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
             }
                 $scope.userit[$index].labval=($scope.userit[$index].labamt*$scope.userit[$index].gwt).toFixed($scope.rupeesDecimalPoints);
               // alert($scope.userit[$index].labval+" amt when RV");
@@ -3118,8 +3177,6 @@ else{
         }else{
           alert("you can't use percentage");
         }
-
-
     }//else
   }//else-for receipt voucher 
 } //main closer
@@ -3449,9 +3506,10 @@ window.sessionStorage.setItem("amtchg",0);
 $scope.newFinalCal=function( subtol){
 
   if($scope.bringOrd=="num"){
-    //alert("ll")
+   
+    //alert("g"+parseFloat($scope.saleinv[0].invoiceValue))
      //if(var f=0;f<=$scope.length)
-     if (parseFloat($scope.orderFinal)>parseFloat($scope.saleinv[0].invoiceValue)) {
+  if (parseFloat($scope.orderFinal)>parseFloat($scope.saleinv[0].invoiceValue)) {
 
       //alert("ll")
  $scope.adjqty=parseFloat($scope.saleinv[0].invoiceValue)
@@ -3504,16 +3562,50 @@ $scope.newFinalCal=function( subtol){
   if($scope.adjqty==undefined||$scope.adjqty==null){
     console.log($scope.saleinv[0].adj)
     $scope.saleinv[0].adj=0;
-        // alert("not null"+$scope.saleinv[0].adj)
+         //alert("not null if"+$scope.saleinv[0].adj)
     $scope.urdinvoice=$scope.saleinv[0].invoiceValue - parseFloat($scope.saleinv[0].adj);
     // alert($scope.urdinvoice+"urd value");
     $scope.finalNetAmount($scope.urdinvoice);
   }
   else{
-      // alert("u selected urd"+$scope.saleinv[0].adj)
-    $scope.adjnetamt=parseFloat($scope.saleinv[0].invoiceValue)-parseFloat($scope.saleinv[0].adj);
-       // alert($scope.adjnetamt+"$scope.adjnetamt")
-      $scope.finalNetAmount($scope.adjnetamt);
+     //alert("u selected urd"+$scope.saleinv[0].adj)
+     //order flow begins
+     if($scope.bringOrd=="num"){
+   //alert("hhh")
+    //alert("g"+parseFloat($scope.saleinv[0].invoiceValue))
+     //if(var f=0;f<=$scope.length)
+
+  if (parseFloat($scope.orderFinal)>parseFloat($scope.saleinv[0].invoiceValue)) {
+
+      //alert("ll")
+ $scope.adjqty=parseFloat($scope.saleinv[0].invoiceValue)
+ $scope.remaning=parseFloat($scope.orderFinal)-parseFloat($scope.saleinv[0].invoiceValue)
+        //alert("ch"+$scope.remaning)
+        $scope.adjnetamt=parseFloat($scope.saleinv[0].invoiceValue)-parseFloat($scope.adjqty);
+                // alert($scope.adjnetamt+"$scope.adjnetamt")
+      
+                 $scope.finalNetAmount($scope.adjnetamt);
+ //alert(both)
+   //return;
+        }
+
+         else if(parseFloat($scope.orderFinal)<=parseFloat($scope.saleinv[0].invoiceValue)) {
+          $scope.adjqty=parseFloat($scope.orderFinal)
+           $scope.adjnetamt=parseFloat($scope.saleinv[0].invoiceValue)-parseFloat($scope.adjqty);
+                // alert($scope.adjnetamt+"$scope.adjnetamt")
+      
+                 $scope.finalNetAmount($scope.adjnetamt);
+          //return
+        }
+      }//orderflow ends
+          else{
+              //alert("not")
+               $scope.adjnetamt=parseFloat($scope.saleinv[0].invoiceValue)-parseFloat($scope.saleinv[0].adj);
+                // alert($scope.adjnetamt+"$scope.adjnetamt")
+      
+                 $scope.finalNetAmount($scope.adjnetamt);
+           }
+
   }
   // alert()
 }
@@ -4508,7 +4600,7 @@ $scope.resu ;
          if($scope.transaction=="Receipt Voucher"){
              remainingNtWt +=parseFloat($scope.userit[i].chgunt);
              $scope.remainingNtWt=remainingNtWt
-              //alert($scope.remainingNtWt)
+              alert("nn"+$scope.remainingNtWt)
          }
             //alert("222")
                  var data = $scope.transaction+","+$scope.userit[i].barcodeNumber+","+$scope.userit[i].chgunt+","+$scope.userit[i].date+","+$scope.userit[i].desc+","
