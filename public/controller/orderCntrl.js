@@ -1844,15 +1844,9 @@ return;
   var r = confirm("Amount Advance")
             if (r==true) {
             $scope.amountCharge=1;
-<<<<<<< HEAD
+
                 $scope.receiptAdd=1;
-=======
-<<<<<<< HEAD
-            $scope.receiptAdd=1;
-=======
-                $scope.receiptAdd=1;
->>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
+
   window.sessionStorage.setItem("addAmt",$scope.receiptAdd);
   window.sessionStorage.setItem("amtchg",$scope.amountCharge);
                $scope.mylink = "receipts.html";

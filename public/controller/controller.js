@@ -439,16 +439,7 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
         var $index=0;
          $scope.showOrderNO=response[0].orderNO;
          console.log(response);
-<<<<<<< HEAD
-         console.log(response[0].itemName);       
-=======
          console.log(response[0].itemName);
-          
-<<<<<<< HEAD
-=======
-        
->>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
          delete(response[0].taxSelection);
          delete(response[0].taxval);
          // $scope.userit[$index].taxval=0;
@@ -464,15 +455,10 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
           // $scope.taxSelectionCall(0,$scope.taxSelection);
          //$scope.userit[0].orderStatus=makeCompleted;
          //alert($scope.userit[0].orderStatus+"ll")
-<<<<<<< HEAD
+
          console.log($scope.userit)
-=======
-<<<<<<< HEAD
-         console.log($scope.userit)
-=======
 console.log($scope.userit)
->>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
+
         })
 
  }
@@ -2367,14 +2353,7 @@ $scope.purityCal=function(val,purity){
     {
       $scope.userit[val].ntwt=$scope.userit[val].ntwt-parseFloat($scope.userit[val].stwt);
     }
-<<<<<<< HEAD
-    $scope.userit[val].wastage = 0;
-    $scope.userit[val].chgunt=$scope.userit[val].ntwt+ $scope.userit[val].wastage- $scope.userit[val].ordAdj;
-    //alert("here is index"+$scope.userit[$index].chgunt)
-    //
-    //$scope.newwas($index,pctcal);
- 
-=======
+
     //alert("mm")
  if($scope.userit[val].wastage==undefined)
     {
@@ -2391,7 +2370,7 @@ $scope.userit[val].wastage=0;
     $scope.userit[val].chgunt=$scope.userit[val].ntwt
   }
   //23-04-2018(for order flow)
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
+
     $scope.userit[val].taxval=parseFloat($scope.userit[val].chgunt*$scope.userit[val].rate).toFixed($scope.rupeesDecimalPoints)
    
     console.log( $scope.userit[val].taxval);
@@ -2658,15 +2637,9 @@ if($scope.transaction == 'Receipt Voucher'){
         $scope.userit[$index].gwt  = (parseFloat($scope.userit[$index].gwt)).toFixed(fixdec);
         $scope.userit[$index].gwt  = parseFloat($scope.userit[$index].gwt)
         $scope.userit[$index].ntwt = $scope.userit[$index].gwt;
-<<<<<<< HEAD
+
       if($scope.chargeOrd == 1 || $scope.chargeAmt == 1 || $scope.receiptOrder ==1){
-=======
-<<<<<<< HEAD
-      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1||$scope.receiptOrder == 1){
-=======
-      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1 || $scope.receiptOrder == 1 ){
->>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
+
         $scope.userit[$index].chgunt = $scope.userit[$index].ntwt;
       }
   // alert($scope.userit[$index].labamt+" "+$scope.userit[$index].taxval);
@@ -3144,23 +3117,11 @@ else{
 
                 // $scope.saleinv[0].taxableval=$scope.userit[$index].taxval;
         }else if(labval2 == 'PerUnit'){
-<<<<<<< HEAD
+
             if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt==undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
               // alert("hi")
                 $scope.userit[$index].labval = 0;
-=======
-<<<<<<< HEAD
-          //alert(typeof($scope.userit[$index].labval));
-            if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt== undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
-              // alert("hi")
-              // $scope.userit[$index].labamt=0;
-                $scope.userit[$index].labval=0;
-=======
-            if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt==undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
-              // alert("hi")
-                $scope.userit[$index].labval = 0;
->>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
->>>>>>> 229f49e8bec30d466494bff71d3be8187cf80cab
+
             }
                 $scope.userit[$index].labval=($scope.userit[$index].labamt*$scope.userit[$index].gwt).toFixed($scope.rupeesDecimalPoints);
               // alert($scope.userit[$index].labval+" amt when RV");
