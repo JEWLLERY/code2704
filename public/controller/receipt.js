@@ -258,7 +258,11 @@ $scope.totalAmount=function(data){
 }
 
 $scope.newRow=function(){
+<<<<<<< HEAD
   if(($scope.partyname != null)|| $scope.newAdd == 1){
+=======
+   if(($scope.partyname != null )|| $scope.newAdd == 1){
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
         $scope.rpamt.push({
           'paymode':"",
           'amount':"",

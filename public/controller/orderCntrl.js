@@ -17,6 +17,7 @@ $scope.ordersReceipt1=0;
 $scope.date=new Date()
 
 $http.get('/Orderprefixs').success(function(response){
+  //alert()
   console.log(response);
   console.log(response[0].TransactionPrefix)
   $scope.prefix1=response[0].TransactionPrefix;
@@ -1843,7 +1844,11 @@ return;
   var r = confirm("Amount Advance")
             if (r==true) {
             $scope.amountCharge=1;
+<<<<<<< HEAD
             $scope.receiptAdd=1;
+=======
+                $scope.receiptAdd=1;
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
   window.sessionStorage.setItem("addAmt",$scope.receiptAdd);
   window.sessionStorage.setItem("amtchg",$scope.amountCharge);
                $scope.mylink = "receipts.html";

@@ -9635,7 +9635,12 @@ require('./public/inventoryDbs/defaultCollections')(app);
 require('./apiCalls/materialAdvancePdf')(app);
 //app.set('port', process.env.PORT || 8000); 
 
+<<<<<<< HEAD
 app.listen(400)
 console.log("server running on port 400");
+=======
+app.listen(1500)
+console.log("server running on port 1500");
+>>>>>>> 584bac830583ce2505a07501ef306b9aa7aef652
 
 exports = module.exports = app;
