@@ -4105,17 +4105,17 @@ app.post('/confirmtransaction/:data',function(req,res){
 })
 
 
-app.get('/count1/:count',function(req,res)
+app.get('/getSplitBarcode/:count',function(req,res)
 {
    // console.log("iam finding count ");
    
     var str=req.params.count;
     
-    var count1 =parseInt(str);
+    var barcode =parseInt(str);
    // console.log("count"+count1)
 
     //console.log("finished")
-     db.barCodeSummary.find({"count":count1},function(err,doc){
+     db.transactionDetail.find({"barcode":Number(barcode),  "Transaction" : "Barcoding",  "split" : "yes",},function(err,doc){
         //res.json(doc);db.barCodeSummary.find({"count":1})
         if(err)
         {
@@ -6372,17 +6372,17 @@ db.updatelist.find({}).sort({_id:-1}).limit(1,function(err,doc)
     })
 })
 // for post in db.updatelist
-app.post('/updatelistinsert/:udelete',function(req,res)
-{
-    var count =req.params.udelete;
-    //console.log(id);
-    count = parseInt(count)
-    db.updatelist.insert({"count":count},function(err,doc)
-    {
-   res.json(doc);
-    })
+// app.post('/updatelistinsert/:udelete',function(req,res)
+// {
+//     var count =req.params.udelete;
+//     //console.log(id);
+//     count = parseInt(count)
+//     db.updatelist.insert({"count":count},function(err,doc)
+//     {
+//    res.json(doc);
+//     })
 
-})
+// })
 // delete from database transaction
 app.delete('/transactiond/:update',function(req,res)
 {

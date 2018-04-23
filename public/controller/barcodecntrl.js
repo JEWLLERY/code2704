@@ -508,6 +508,8 @@ $scope.saveBatchGeneration = function(){
                                       //$scope.userit[p].compositeRef =  $scope.userit[0].barcode ;
                                        $scope.userit[p].compositeRef =  $scope.userit[0].barcode ;
                                        $scope.userit[p].compositenum  = p;
+                                       $scope.userit[p].date= new Date(((new Date(new Date()).toISOString().slice(0, 23))+"-05:30")).toISOString();
+                       
                                        for(let j=0;j<$scope.items.length;j++){
        
          
@@ -516,7 +518,8 @@ $scope.saveBatchGeneration = function(){
                                                           console.log($scope.items[j])
                                                           // alert("Hsc in  items matched"+$scope.items[j].Hsc)
                                                           $scope.userit[p].Hsc=$scope.items[j].Hsc;
-                                                          console.log($scope.userit[p].Hsc)
+                                                          console.log($scope.userit[p].Hsc);
+                                                          
                                                         
                                                           break;
                                                         }//   if ($scope.userit[p].itemName == 
@@ -527,6 +530,7 @@ $scope.saveBatchGeneration = function(){
                                       //       console.log("i got replay")
                                            
                                       //  });
+                                      $scope.userit[p].stockPoint = $scope.userit[0].stockPoint;
                                       $http.post('/transactionstock',$scope.userit[p]);
 
 
@@ -539,7 +543,9 @@ $scope.saveBatchGeneration = function(){
                                         // })
                                           $scope.userit[p].stockPoint1 = stockin ;
                                          $http.post('/transactionstockInward',$scope.userit[p]);
-
+                                           colorCodeFun(icount)
+                                         //colorCodeFun(icount)//changed on 23/4 because color inconsistant
+          
                               }else{ // if($scope.userit[p].gwt != undefined)
                                       break;
                                    }
@@ -550,7 +556,9 @@ $scope.saveBatchGeneration = function(){
                        $scope.userit[0].stockPoint1 = stockin ;
                        $http.post('/transactionstockInward',$scope.userit[0]);
                        $http.post('/batchdata1',$scope.userit[0]);
-
+                        colorCodeFun(icount)
+                        //colorCodeFun(icount)//changed on 23/4 because color inconsistant
+          
                       
                        if( comboItemCheck  == "yes"){
                              $http.post('/transactionComboItemInsert',$scope.userit[0]).success(function(response) {  
@@ -561,7 +569,9 @@ $scope.saveBatchGeneration = function(){
                        }
 
                     }
-           colorCodeFun(icount)
+                          //       colorCodeFun(icount)
+                        //colorCodeFun(icount)//changed on 23/4 because color inconsistant
+          
            })//getInv
 
 //colorCodeFun(icount)    
@@ -623,11 +633,12 @@ function colorCodeFun(icount) {
                      //console.log(response);
                  
                     var lgn =  response.length
-                    console.log(lgn)
+                    console.log(lgn);
+                    add2 =0;
                     //alert("len the len batch is  "+lgn)
                     for(i=0;i<= lgn-1;i++)
                      { 
-                       twt1 = parseInt(response[i].wt)
+                       twt1 = parseFloat(response[i].wt)
                        // alert("twt1 "+twt1)
                        console.log(twt1);//bar summ totalwt
                        console.log(response[i].gwt);//gross wt
@@ -728,11 +739,11 @@ function colorCodeFun(icount) {
             } else{ //closer for replay == 0
                    // alert("window.location.reload")
                      window.location.reload();
-                     $http.post('/updatelistinsert/'+icount).success(function(response)
-                         {  
-                            //  alert("post "+response)    
+                     // $http.post('/updatelistinsert/'+icount).success(function(response)
+                     //     {  
+                     //        //  alert("post "+response)    
          
-                         });
+                     //     });
 
                   }
 

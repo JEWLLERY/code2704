@@ -433,21 +433,12 @@ var vbn=window.sessionStorage.getItem("receiptVocOrderNo")
  if(idVocherPartyId!=null && idVocherPartyId!="null"){
 $scope.hiddenOrderNum="hideTable"
 $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){ 
-<<<<<<< HEAD
+
         var $index=0;
          $scope.showOrderNO=response[0].orderNO;
          console.log(response);
          console.log(response[0].itemName);
           
-         // $scope.item.itemName = response[0].itemName;
-         // $scope.item.purity = response[0].purity;
-         // $scope.item.gwt = response[0].gwt;
-         // $scope.item.gpcs = response[0].gpcs;
-         // $scope.userit[0].
-         // var makeCompleted=response[0].orderStatus
-         // makeCompleted="completed"
-        /// alert(makeCompleted)
-        delete( response[0]._id);
          delete(response[0].taxSelection);
          delete(response[0].taxval);
          // $scope.userit[$index].taxval=0;
@@ -463,40 +454,7 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
           // $scope.taxSelectionCall(0,$scope.taxSelection);
          //$scope.userit[0].orderStatus=makeCompleted;
          //alert($scope.userit[0].orderStatus+"ll")
-=======
-       
-         $scope.showOrderNO=response[0].orderNO;
-         $scope.deleteId=response[0]._id
-         //alert($scope.deleteId)
-         console.log(response)
-          delete( response[0].final);
-          delete( response[0].taxSelection);
-          delete( response[0].taxamt);
-          delete( response[0].mrp)
-          delete( response[0].withinstatecgst);
-          delete( response[0].withinstatesgst);
-          //delete( response[0].withinstatecgst);
-         //alert(response[0].itemName)
-         $scope.userit=response;
-         //alert("pp"+$scope.userit[0].itemName)
-      //      $scope.userit[0].chgunt=response[0].chgunt;
-        
-      //      $scope.userit[0].gpcs=response[0].gpcs;
-      //         $scope.userit[0].gwt=response[0].gwt;
-           
-      //          $scope.userit[0].irate=response[0].irate;
-      //          $scope.userit[0].ntwt=response[0].ntwt;
-      //         $scope.userit[0].rateFixed=response[0].rateFixed;
-      //          $scope.userit[0].stval=response[0].stval;
-      // $scope.userit[0].totalVal=response[0].totalVal
-
-      // $scope.userit[0].uom=response[0].uom
-      // $scope.userit[0].uomValue=response[0].uomValue
-      //$scope.userit[0].=response[0].
-        //delete( $scope.userit[0]._id);
-       
->>>>>>> 6afdd4f77d8b5f7d488170602ccac6471cb01e2d
-console.log($scope.userit)
+         console.log($scope.userit)
         })
 
  }
@@ -793,11 +751,7 @@ $http.get('/getinventorygroupvaluenotationlast').success(function(response){
                  });
 //tax selection
 $scope.taxSelectionCall = function ($index,taxSelection,call) {
-<<<<<<< HEAD
- // alert("taxSelectionCall")
-=======
-  //alert("Ll")
->>>>>>> 6afdd4f77d8b5f7d488170602ccac6471cb01e2d
+
  if (taxSelection != undefined) {
 
    $http.get('/taxSelectionWithinstate',{params:{"taxSelection":taxSelection}}).success(function(response){
@@ -875,13 +829,7 @@ $scope.receiptSaleInvoice = function(){
 
 //for tax amount calculation
 var taxamtcal = function($index){
-<<<<<<< HEAD
-  // alert("taxamt call")
-          // $scope.taxSelectionCall($index,$scope.userit[$index].taxSelection,call = "taxamtcal") 
-=======
-  //alert("rtrttr")
-       //   $scope.taxSelectionCall($index,$scope.userit[$index].taxSelection,call = "taxamtcal") 
->>>>>>> 6afdd4f77d8b5f7d488170602ccac6471cb01e2d
+
          console.log($scope.userit[$index])
  
      
@@ -908,23 +856,17 @@ var taxamtcal = function($index){
                             // alert(calcu);
                        }
          }else{  
-<<<<<<< HEAD
-                  // alert("else in taxamt")
-=======
-                 //$scope.userit[$index].mrp=parseFloat($scope.userit[$index].mrp)
->>>>>>> 6afdd4f77d8b5f7d488170602ccac6471cb01e2d
+
                     if ($scope.userit[$index].mrp != undefined) {
                    //alert($scope.userit[$index].mrp)
                   var calcu = ($scope.userit[$index].mrp).toFixed($scope.rupeesDecimalPoints);
                          //alert(calcu+"mm");
                     }else{
-<<<<<<< HEAD
+
                       // alert("else")
                        // if when not navigated from orders-23/4/18
                        if($scope.receiptOrder2 != 1){
-=======
-                        //alert("else in else")
->>>>>>> 6afdd4f77d8b5f7d488170602ccac6471cb01e2d
+
                          var calcu = (($scope.userit[$index].chgunt*$scope.userit[$index].rate)+parseInt ($scope.userit[$index].labval)+parseInt ($scope.userit[$index].stval)).toFixed($scope.rupeesDecimalPoints);
                         // var calcu = 100;
 
@@ -2284,6 +2226,7 @@ $scope.purityCal1=function(val,purity,itemname){
   if ($scope.InvGroupAndPurity == null) {
 
  if(purity!=$scope.orderPurity && $scope.bringOrd=="num"){
+
       alert("Please Select Purity"+$scope.orderPurity)
        $scope.userit[val].purity = null;
     }
@@ -2406,7 +2349,8 @@ $scope.purityCal=function(val,purity){
     {
       $scope.userit[val].ntwt=$scope.userit[val].ntwt-parseFloat($scope.userit[val].stwt);
     }
-    $scope.userit[val].chgunt=$scope.userit[val].ntwt;
+    $scope.userit[val].wastage = 0;
+    $scope.userit[val].chgunt=$scope.userit[val].ntwt+ $scope.userit[val].wastage- $scope.userit[val].ordAdj;
     //alert("here is index"+$scope.userit[$index].chgunt)
     //
     //$scope.newwas($index,pctcal);
@@ -2447,7 +2391,28 @@ $scope.purityCal=function(val,purity){
                                                                          $scope.newgwt($index)
                                                                 }
                                                              })
-                                                     }
+                                                     } else if($scope.userit[$index].split == 'yes'){
+        //alert("hiii")'/getSplitBarcode/'+$scope.user[i].barcode
+         $http.get('/getSplitBarcode/'+$scope.userit[$index].barcode).success(function(response){
+                          //alert(response);
+                          var splitcodeGwt = response[0].gwt;
+                          var splitcodeGpcs = response[0].gpcs;
+                          //alert(" splitcodeGpcs "+splitcodeGpcs);
+                         
+                           if($scope.userit[$index].gpcs > splitcodeGpcs ){
+                                 $scope.userit[$index].gpcs = response[0].gpcs;
+                                 // $scope.item.gwt = 100;
+                                 // alert($scope.userit[$index].gwt);
+                                 alert("the Gpcs is greater then the limit");
+                      
+                                 //$scope.newgwt($index);
+                          }
+                          //alert("res")
+        
+
+       })
+
+       }
             
  }
 $scope.findWeightTolerence =function($index){
@@ -2485,12 +2450,12 @@ $scope.findWeightTolerence =function($index){
         }
 
        else if($scope.userit[$index].split == 'yes'){
-        //alert("hiii")
-         $http.get('/getsplitBarcode'+$scope.userit[$index].barcodeNumber).success(function(response){
+        //alert("hiii")'/getSplitBarcode/'+$scope.user[i].barcode
+         $http.get('/getSplitBarcode/'+$scope.userit[$index].barcode).success(function(response){
                           //alert(response);
                           var splitcodeGwt = response[0].gwt;
                           var splitcodeGpcs = response[0].gpcs;
-                          
+                          //alert(" splitcodeGpcs "+splitcodeGpcs);
                           if($scope.userit[$index].gwt > splitcodeGwt ){
                                  $scope.userit[$index].gwt = response[0].gwt;
                                  // $scope.item.gwt = 100;
@@ -2656,7 +2621,7 @@ if($scope.transaction == 'Receipt Voucher'){
         $scope.userit[$index].gwt  = (parseFloat($scope.userit[$index].gwt)).toFixed(fixdec);
         $scope.userit[$index].gwt  = parseFloat($scope.userit[$index].gwt)
         $scope.userit[$index].ntwt = $scope.userit[$index].gwt;
-      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1){
+      if($scope.chargeOrd == 1 || $scope.chargeAmt == 1 || $scope.receiptOrder ==1){
         $scope.userit[$index].chgunt = $scope.userit[$index].ntwt;
       }
   // alert($scope.userit[$index].labamt+" "+$scope.userit[$index].taxval);
@@ -3133,6 +3098,25 @@ else{
                  }
 
                 // $scope.saleinv[0].taxableval=$scope.userit[$index].taxval;
+        }else if(labval2 == 'PerUnit'){
+            if($scope.userit[$index].labamt=="" || $scope.userit[$index].labamt==undefined  || $scope.userit[$index].labamt== null|| $scope.userit[$index].labamt==NaN) {
+              // alert("hi")
+                $scope.userit[$index].labval = 0;
+            }
+                $scope.userit[$index].labval=($scope.userit[$index].labamt*$scope.userit[$index].gwt).toFixed($scope.rupeesDecimalPoints);
+              // alert($scope.userit[$index].labval+" amt when RV");
+                $scope.userit[$index].taxval = $scope.userit[$index].labval;
+                // $scope.taxSelectionCall($index,$scope.receiptVoucherTax);
+                // $scope.saleinv[0].taxableval=$scope.userit[$index].taxval;
+                  if($scope.radio.state == 'with in state'){
+                    $scope.receiptVoucherTax="receiptGST";
+                     $scope.taxSelectionCall($index,$scope.receiptVoucherTax);
+                }else{
+                   $scope.receiptVoucherTax2 = "receiptIGST";
+                    $scope.taxSelectionCall($index,$scope.receiptVoucherTax2);
+                }
+        }else{
+          alert("you can't use percentage");
         }
 
 
@@ -5728,7 +5712,7 @@ window.sessionStorage.setItem("oreceipt2",null);
                          var q = $q.defer()
 
                          // $http.get('/count1/'+count).success(function(response){ 
-                         $http.get('/getSplitBarcode'+$scope.user[i].barcodeNumber).success(function(response){
+                         $http.get('/getSplitBarcode/'+$scope.user[i].barcode).success(function(response){
                               console.log(response);
                               //alert("entered into split  getSplitBarcode yes");
                          
