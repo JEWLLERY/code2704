@@ -967,7 +967,7 @@ app.get('/orderName',function(req,res) {
       })
 })
   app.put('/anydata/:thh',function(req,res){
-  console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
+  console.log("chararacharanyyyyyyyyyyyyyyyyyyyyy233333333345555555")
 var str=req.params.thh;
   
      var str_array=str.split(",");
@@ -1044,74 +1044,63 @@ var str=req.params.thh;
    //     });     
 });
 app.put('/updateSaveReceiptVocher/:thh',function(req,res){
-  console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
-var str=req.params.thh;
-  
-     var str_array=str.split(",");
-    var showOrderNO=str_array[0];
  
-   var id=str_array[1];
-    
+  //console.log(str+"22222222222222222222222");
+  console.log(id+"ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
+     var str=req.params.thh;
 
-    var partyNames=str_array[2]
-    var desc=str_array[3]
-    var size=str_array[4]
-    var gpcs=str_array[5]
-     gpcs = parseFloat(gpcs)
-     var gwt=str_array[6]
+     var str_array=str.split(",");
+    
+ 
+   var id=str_array[0];
+
+//console.log(id+"ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
+//var str=req.params.thh;
+  var desc=str_array[1];
+  if(desc=="undefined" || desc==undefined){
+  desc="";
+ }
+  
+    var size=str_array[2];
+   if(size=="undefined" || size==undefined){
+  size="";
+ }
+    var gpcs=str_array[3];
+ 
+     gpcs = parseFloat(gpcs) 
+
+     
+     var gwt=str_array[4];
      gwt = parseFloat(gwt)
-    var itemName=str_array[7]
    
    
-    var ntwt=str_array[8]
+   
+    var ntwt=str_array[5];
      ntwt = parseFloat(ntwt)
-    var purity=str_array[9]
    
+  var chgunt=str_array[6] ;
    
-    // var size=str_array[11]
-    var stwt=str_array[10]
-    
-    var wastage=str_array[11]
-    var stval=str_array[12]
+  chgunt = parseFloat(chgunt)
 
       
-    var uom=str_array[13] //
+   var  labcal=str_array[7];
      
-    
-    var pctcal=str_array[14] //
-     
-    
-    var chgunt=str_array[15] //
-   
-  
-
-     var mrp =str_array[16]
-  
-      var stchg=str_array[17]
-    
-         var  stonecal=str_array[18]
-          var  labamt=str_array[19]     
+  var  labamt=str_array[8] ;    
         
-              var  final=str_array[20] 
-               var  rate=str_array[21] 
-                var  labval=str_array[22] 
+           
+  var  labval=str_array[9] ;
+               
                  
-      
+      console.log(chgunt+"rrrrrrrrrrrrrrrrrrrrsssssssssssssss");
    
-     db.orders.update({_id:mongojs.ObjectId(id)},{$set:{"orderNo":showOrderNO, "chgunt":chgunt,"desc":desc,"gpcs":gpcs,"gwt":gwt,
-    "itemName":itemName,"ntwt":ntwt,"partyNames":partyNames,"size":size,"stwt":stwt,"wastage":wastage,"stval":stval,
-
-     "mrp":mrp,"stchg":stchg,"stonecal":stonecal,"labamt ":labamt , "purity":purity,"uom":uom,"pctcal":pctcal,
-   "rate":rate,"labval":labval
+     db.orders.update({_id:mongojs.ObjectId(id)},{$set:{ "chgunt":chgunt,"desc":desc,"gpcs":gpcs,"gwt":gwt,
+    "ntwt":ntwt,"size":size,"labamt ":labamt , "labcal":labcal,"labval":labval
        }},function(err,doc){
                 res.json(doc);
 
         }); 
      
-   // db.orders.update({_id:mongojs.ObjectId(id)},{$set:{"gwt":gswt,"orderNo":id}},function(err,doc){
-   //               res.json(doc);
-
-   //     });     
+     
 });
 
 
@@ -9636,8 +9625,8 @@ require('./apiCalls/materialAdvancePdf')(app);
 //app.set('port', process.env.PORT || 8000); 
 
 
-app.listen(450)
-console.log("server running on port 450");
+app.listen(1450)
+console.log("server running on port 1450");
 
 
 exports = module.exports = app;

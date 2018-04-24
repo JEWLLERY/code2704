@@ -101,10 +101,14 @@ $scope.detailsOrder=function(orderNum){
           
       $http.get('/ordersNoFromReceipt/'+orderNum).success(function(response){ 
               console.log(response)
-             //alert(" response "+response.length)
-             //$scope.orderFinal=parseFloat(response[0].remainingPaid)
-              //alert("2ww"+$scope.orderFinal)
-              // 27/3 vijay added this condition because  response[0].remainingPaid undefined
+ delete(response[0].purity)
+    delete( response[0].final);
+    delete( response[0].mrp)
+            delete( response[0].taxval);
+          delete( response[0].taxSelection);
+          delete( response[0].taxamt);
+          delete( response[0].withinstatecgst);
+          delete( response[0].withinstatesgst);
             if (response.length!= 0) {
                $scope.orderFinal=parseFloat(response[0].remainingPaid)
             //alert($scope.orderFinal)
@@ -438,8 +442,11 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
 
         var $index=0;
          $scope.showOrderNO=response[0].orderNO;
+         $scope.idOrders=response[0]._id;
+
          console.log(response);
          console.log(response[0].itemName);
+          delete(response[0]._id);
          delete(response[0].taxSelection);
          delete(response[0].taxval);
          // $scope.userit[$index].taxval=0;
@@ -450,6 +457,7 @@ $http.get('/getOrderNum/'+idVocherPartyId).success(function(response){
          delete(response[0].rate);
          delete(response[0].mrp);
          $scope.userit=response;
+
          $scope.userit[0].taxSelection="receiptGST";
          $scope.finalCal();
           // $scope.taxSelectionCall(0,$scope.taxSelection);
@@ -466,7 +474,8 @@ console.log($scope.userit)
 var PartyId=window.sessionStorage.setItem("idVocherPartyId",null)
 
   $scope.fromOrder=function(){
- 
+ //alert($scope.userit[0].chgunt+"cha")
+ //alert($scope.userit[0]._id)
     var issueVocherPartyId=window.sessionStorage.getItem("issueVocherPartyId")
     //console.log(issueVocherPartyId)
     if(issueVocherPartyId!=null){
@@ -483,13 +492,10 @@ var PartyId=window.sessionStorage.setItem("idVocherPartyId",null)
              console.log(response)
              
                })
-    
-     var updateVocherPartyId =$scope.showOrderNO+","+ $scope.userit[0]._id +","+$scope.userit[0].partyNames+","+$scope.userit[0].desc+","
-    +$scope.userit[0].size+","+$scope.userit[0].gpcs+","+$scope.userit[0].gwt+","+$scope.userit[0].itemName+","+$scope.userit[0].ntwt+","
-    +$scope.userit[0].purity+","+$scope.userit[0].stwt+","+$scope.userit[0].wastage+","+$scope.userit[0].stval+","
-    +$scope.userit[0].uom +","+$scope.userit[0].pctcal+","+$scope.userit[0].chgunt +","
-  +$scope.userit[0].mrp+","+$scope.userit[0].stchg+","+$scope.userit[0].stonecal+","
-    +$scope.userit[0].labamt  +","+ $scope.userit[0].rate  +","+$scope.userit[0].labval
+   
+     var updateVocherPartyId =$scope.idOrders+","+$scope.userit[0].desc+","+$scope.userit[0].size+","+$scope.userit[0].gpcs+","+$scope.userit[0].gwt+","+$scope.userit[0].ntwt+","
+   
+    +$scope.userit[0].chgunt+","+$scope.userit[0].labcal+","+$scope.userit[0].labamt +","+$scope.userit[0].labval
     console.log(updateVocherPartyId)
     $http.put('/updateSaveReceiptVocher/'+updateVocherPartyId ).success(function(response){
              console.log(response)
@@ -4556,12 +4562,19 @@ $scope.resu ;
                      $scope.userit[i].date = new Date(((new Date(new Date()).toISOString().slice(0, 23))+"-05:30")).toISOString();
                      $scope.userit[i].Transaction = $scope.transaction
                  }
-            
+              
+              // if($scope.transaction == "Receipt Voucher" && $scope.receiptOrder2 == 1){
+              //   alert("changed order Status");
+              //   $scope.userit[i].orderStatus="completed";
+              // }
 
-         if($scope.transaction=="Receipt Voucher"){
+
+
+         if($scope.transaction=="Receipt Voucher" && $scope.test =='display'){
+          //alert(parseFloat($scope.userit[i].chgunt))
              remainingNtWt +=parseFloat($scope.userit[i].chgunt);
              $scope.remainingNtWt=remainingNtWt
-              alert("nn"+$scope.remainingNtWt)
+              //alert("nn"+$scope.remainingNtWt)
          }
             //alert("222")
                  var data = $scope.transaction+","+$scope.userit[i].barcodeNumber+","+$scope.userit[i].chgunt+","+$scope.userit[i].date+","+$scope.userit[i].desc+","
@@ -4575,7 +4588,7 @@ $scope.resu ;
        
        
                   if($scope.userit[i]._id!=null){  
-                       //alert("id is not null"+$scope.userit[i].orderStatus)
+                       alert("id is not null"+$scope.userit[i].orderStatus)
                        if ($scope.transaction == 'RD Purchase') {
                             if (payAlert == true) {
                               payAlertCall();

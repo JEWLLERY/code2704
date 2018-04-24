@@ -1693,7 +1693,7 @@ console.log(data)
 //var data=$scope.userit[0]._id+","+$scope.orderNO+","+$scope.userit[0].gwt
 else if($scope.updateOrder=="updateData")
 {
-  //alert($scope.userit.length)
+  //alert("$scope.userit.length")
    var fromdate  = new Date(((new Date($scope.userit[t].usedate).toISOString().slice(0, 23))+"-05:30")).toISOString();
        var  todate= new Date(((new Date($scope.userit[t].date).toISOString().slice(0, 23))+"-05:30")).toISOString();
    
