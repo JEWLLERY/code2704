@@ -268,7 +268,7 @@ $scope.totalAmount=function(data){
 
 $scope.newRow=function(){
   if($scope.urdyes !=1){
-  if($scope.partyname != null && editrow3 != null){
+  if($scope.partyname != null){
         $scope.rpamt.push({
           'paymode':"",
           'amount':"",
