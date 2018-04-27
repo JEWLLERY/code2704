@@ -980,7 +980,17 @@ var str=req.params.thh;
     var orderNo=str_array[3]
     var partyNames=str_array[4]
     var desc=str_array[5]
+    if(desc=="undefined" || desc==undefined){
+
+
+        desc="";
+    }
      var size=str_array[6]
+        if(size=="undefined" || size==undefined){
+
+
+       size ="";
+      }
     var gpcs=str_array[7]
     gpcs = parseFloat(gpcs)
    
@@ -4115,15 +4125,63 @@ app.get('/getSplitBarcode/:count',function(req,res)
         res.json(doc);
       });
 })
+
+
 // for split result
 app.post('/splitreturn',function(req,res)
 {
  // console.log("iam inserting in the split table ");
    //console.log(req.body)
-     db.transactionDetail.insert(req.body,function(err,doc){
-       // console.log("noerror")
-        res.json(doc);
-      });
+        delete( req.body.count)
+        delete( req.body.composite)
+        delete( req.body.comboItem)
+
+        delete( req.body.taxval)
+        delete( req.body.labval)
+        delete( req.body.stval)
+        delete( req.body.voucherClass)
+        delete( req.body.voucherClassId) 
+        delete( req.body.transactionTypeId )
+         delete( req.body.voucherDate)
+        delete( req.body.voucherTime )
+
+        delete( req.body.barcodeNumber)
+        
+        delete( req.body.irate)
+        delete(req.body.accNumbers);
+        delete(req.body.AccNo);
+
+        delete( req.body.uomValue )
+ 
+        delete( req.body.taxSelection )
+        delete( req.body.withinstatecgst )
+        delete( req.body.withinstatesgst )
+        delete( req.body.taxamt )
+        delete( req.body.billType )
+        delete( req.body.billtype )
+        delete( req.body.final )
+        delete( req.body.StockInward );
+        delete( req.body.taxval1);
+        delete( req.body.barcode);
+
+        delete( req.body.ntwt);
+        delete( req.body.chgunt);
+       
+       
+
+     db.transactionDetail.insert(req.body,function(err,splitReplay){
+     //for update split return back to sysytem
+        delete(splitReplay._id);
+        delete(splitReplay.Transaction);
+        delete(splitReplay.ntwt);
+        delete(splitReplay.stwt);
+        
+        delete(splitReplay.chgunt);
+        splitReplay.stockInward = "yes";
+        splitReplay.stockPoint = "Split Treasure";
+        db.transactionDetail.insert(splitReplay)
+        res.json(splitReplay);
+     });
 })
 
 // for combo new barcode
@@ -9625,8 +9683,8 @@ require('./apiCalls/materialAdvancePdf')(app);
 //app.set('port', process.env.PORT || 8000); 
 
 
-app.listen(1450)
-console.log("server running on port 1450");
+app.listen(2450)
+console.log("server running on port 2450");
 
 
 exports = module.exports = app;

@@ -529,19 +529,16 @@ To  <input type="date" ng-model="dateto" id="dates" ng-change="vend()" />
       
       <td>{{item.orderNO}}</td>
       
-       <td>{{item.date | date : "dd.MM.y" }}</td>
+       <td >{{item.date | date : "dd.MM.y" }}</td>
       <!--  | date : "dd.MM.y" -->
        <td style="padding-left: 40px">{{item.usedate | date : "dd.MM.y" }}</td>
        <td style="padding-left: 30px">{{item.partyNames}}</td>
        <td style="padding-left: 20px">{{item.itemName}}</td>
-       <td style="padding-left: 40px">{{item.desc}}</td>
-        <td style="padding-left: 60px">{{item.final}}</td>
-        <td style="padding-left: 40px"><!--   <select id="party" ng-model="allocate"  ng-init="ven='Unallocated'" >
-
-                        <option  ng-cloak>{{ven}}</option>
-                    </select> -->
-                    <input type="text" id="box" ng-model="item.allocate" readonly>
-                   <!--  <select ><option>{{"jjj"}}</option></select> -->
+       <td >{{item.desc}}</td>
+        <td >{{item.final}}</td>
+        <td >
+                    <input type="text" id="party" ng-model="item.allocate" readonly>
+                  
                   </td>
           <td style="padding-left: 10px"> <!--  <select id="party" ng-init="ord='Initial'" >
                       

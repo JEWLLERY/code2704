@@ -1,0 +1,32 @@
+<!-- <!DOCTYPE>
+<html ng-app='myApp' ng-controller="without$scope">
+<head>
+	<title>Without $scope</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>     
+ <script type="text/javascript" src="without$scope.js"></script>
+<body ng-controller="without$scope">
+	<p>Hii</p>
+</body>
+</html> -->
+<!DOCTYPE>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="myCtrl.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+
+
+</body>
+</html>

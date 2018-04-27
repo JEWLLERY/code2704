@@ -4588,7 +4588,7 @@ $scope.resu ;
        
        
                   if($scope.userit[i]._id!=null){  
-                       alert("id is not null"+$scope.userit[i].orderStatus)
+                      // alert("id is not null"+$scope.userit[i].orderStatus)
                        if ($scope.transaction == 'RD Purchase') {
                             if (payAlert == true) {
                               payAlertCall();
@@ -5821,9 +5821,9 @@ window.sessionStorage.setItem("oreceipt2",null);
                     // console.log( editt.stwt)
                     //  console.log( editt)
                                  // $scope.user[i] = {};
-                              $scope.user[i]  =JSON.parse(window.sessionStorage.getItem("Str4"));
+                                 $scope.user[i]  =JSON.parse(window.sessionStorage.getItem("Str4"));
            
-                                  console.log("entered into the split loop")
+                               console.log("entered into the split loop")
                                   var dgwt = twgt - gwt;
                                   var dgpcs = tpcs - gpcs; 
                                  // var latest = dgwt+","+dgpcs+","+bcode;
@@ -5834,19 +5834,19 @@ window.sessionStorage.setItem("oreceipt2",null);
                                   $scope.user[i].gwt =  dgwt
                                   console.log( $scope.user[i].gwt)
                                   $scope.user[i].Transaction = "Split return"
-                                  $scope.user[i].StockInward = "yes"
+                                  //$scope.user[i].StockInward = "yes";
+                                  $scope.user[i].stockInward = "no";
                                  // $scope.user[i]. = "yes"
-                                  $scope.user[i].refid = $scope.user[i].barcode 
+                                  $scope.user[i].refid = $scope.user[i].barcode; 
                                   $scope.user[i].barcode = ""
                                    $scope.user[i].orderStatus ="completed" 
-                                  $scope.user[i].StockPoint = "Split Treasure"
+                                  //$scope.user[i].StockPoint = "Split Treasure"
                                   $http.post('/splitreturn',$scope.user[i]).success(function(response) {
                                          
                                              console.log("i got from split")
                                            // $scope.latest1=response;
                                             console.log(response);
-                                  })
-                                   
+                                  })                                   
                           }//  (gwt != twgt)
                     }//get if
                     defer1.reject("split1");
